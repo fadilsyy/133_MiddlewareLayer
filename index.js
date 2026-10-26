@@ -1,6 +1,6 @@
 import express from 'express'
 import pg from 'pg'
-import Joi, { date, func } from 'joi'
+import Joi, { allow, date, func } from 'joi'
 
 const app = express()
 const port = 3000
@@ -67,3 +67,12 @@ const biodataSchema = Joi.object({
 const idSchema = Joi.object({
     id: Joi.number().integer().positive().required(),
 })
+
+// Middleware untuk validasi body
+function validateBody(schema) {
+    return (req, res, next) => {
+        const { error, value } = schema.validate(req.body, {
+            abortEarly: false,
+            convert: true,
+            allowUnknown: false,
+        })
