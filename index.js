@@ -111,6 +111,7 @@ function validateParams(schema) {
             )
         }
 
-
+        req.params = value
+        next()
     }
 }
