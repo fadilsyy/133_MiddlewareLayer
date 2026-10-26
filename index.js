@@ -1,6 +1,6 @@
 import express from 'express'
 import pg from 'pg'
-import Joi, { allow, date, func } from 'joi'
+import Joi from 'joi'
 
 const app = express()
 const port = 3000
